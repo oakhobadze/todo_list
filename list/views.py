@@ -16,26 +16,27 @@ class TaskListView(ListView):
 class TaskCreateView(CreateView):
     model = Task
     form_class = TaskForm
-    success_url = reverse_lazy('task_list')
+    success_url = reverse_lazy('list:task_list')
 
 
 class TaskUpdateView(UpdateView):
     model = Task
     form_class = TaskForm
-    success_url = reverse_lazy('task_list')
+    success_url = reverse_lazy('list:task_list')
 
 
 class TaskDeleteView(DeleteView):
     model = Task
-    success_url = reverse_lazy('task_list')
+    success_url = reverse_lazy('list:task_list')
 
 
 class TaskToggleStatusView(View):
+
     def post(self, request, pk):
         task = get_object_or_404(Task, pk=pk)
         task.is_done = not task.is_done
         task.save()
-        return redirect('task_list')
+        return redirect('list:task_list')
 
 
 class TagListView(ListView):
@@ -46,15 +47,15 @@ class TagListView(ListView):
 class TagCreateView(CreateView):
     model = Tag
     form_class = TagForm
-    success_url = reverse_lazy('tag_list')
+    success_url = reverse_lazy('list:tag_list')
 
 
 class TagUpdateView(UpdateView):
     model = Tag
     form_class = TagForm
-    success_url = reverse_lazy('tag_list')
+    success_url = reverse_lazy('list:tag_list')
 
 
 class TagDeleteView(DeleteView):
     model = Tag
-    success_url = reverse_lazy('tag_list')
+    success_url = reverse_lazy('list:tag_list')
